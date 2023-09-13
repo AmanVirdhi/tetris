@@ -1,4 +1,3 @@
-# tetris
 Frontend Development Assessment
 
 Game Concept:
