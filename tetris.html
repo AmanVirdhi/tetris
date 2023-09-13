@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Word Tetris</title>
+    
+    <header>
+        <div class="navbar">
+           <h2>USERFECAT</h2>
+           <h2 class="word">Next word: AND</h2>
+           <h2>Score: 0 </h2>
+        </div>    
+    </header>
+
+    <style>
+        body {
+            margin: 0;
+            /* overflow: idden; */
+            background-color: rgba(15, 8, 34, 0.832);
+        }
+        .word{
+            font-size:1.3rem;
+            color: #afa4c4; 
+        }
+
+        .navbar{
+            display: flex; /*in same row*/ 
+            align-items:center;
+            justify-content: space-between;
+            padding: 5px;
+            padding-right: 2rem;
+            padding-left:2rem ;
+            color: white;
+            /* border: 1px solid white; */
+        }
+
+        #game-container {
+            width: 65rem;
+            height: 35rem;
+            margin: 0 auto;
+            position: relative;
+            /* border: 1px solid #333; */
+            background-color: #170a30dc;
+            border: 3px solid #7c6095b8 ;
+            
+        }
+
+        .block {
+            width: 30px;
+            height: 30px;
+            position: absolute;
+            background-color: #0cda57;
+            color: white;
+            border-radius: 5px;
+            text-align: center;
+            line-height: 30px;
+            font-size: 14px;
+        }
+        .foot{
+            position: relative;
+            display: flex;
+            justify-content: end;
+            /* margin-left:80rem; */
+            height: 25px;
+            /* width: 3px; */
+            bottom: 0;
+            padding-right: 2rem;
+            
+            /* border-width: 5px 1px; */
+            /* border: 1px solid white; */
+        }
+        button{
+            /* display: absolute;
+            /* right: 0px; */
+            border: 1px solid white;
+            background-color: rgb(26, 3, 81);
+            color: white;
+            font: 13px;
+            border-radius: 5px;
+            width:4rem;
+        }
+        p1{
+            font-size:1.3rem;
+            color: #0cda57;
+            margin-left: 1rem;
+        }
+
+        .box
+        {
+            height: 50px;
+            width:100px;
+
+        }
+    </style>
+</head>
+<body>
+    <div id="game-container"></div>
+
+    <script>
+        const gameContainer = document.getElementById("game-container");
+
+        // Function to create a new falling block with a random word
+        function createBlock() {
+            const words = ["A", "B", "C", "D", "E", "F"];
+            const randomWord = words[Math.floor(Math.random() * words.length)];
+
+            const block = document.createElement("div");
+            block.classList.add("block");
+            block.style.left = `${Math.floor(Math.random() * (gameContainer.clientWidth - 30))}px`;
+            block.innerText = randomWord;
+            gameContainer.appendChild(block);
+
+            // Move the block down
+            let topPosition = 0;
+            const moveBlock = setInterval(() => {
+                topPosition += 5;
+                block.style.top = `${topPosition}px`;
+
+                // Check if the block has reached the bottom
+                if (topPosition >= gameContainer.clientHeight - 30) {
+                    clearInterval(moveBlock);
+                    gameContainer.removeChild(block);
+                }
+            }, 100);
+        }
+
+        // Generate falling blocks at intervals
+        setInterval(createBlock, 1500);
+    </script>
+    <footer>
+        
+        <DIV class = "foot">
+        <button>HINT</button>
+        <p1>4:16:42</p1>
+        </DIV>
+
+    </footer>
+</body>
+</html>
